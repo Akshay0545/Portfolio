@@ -1,8 +1,7 @@
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
   heroRef: React.RefObject<HTMLElement>;
@@ -12,75 +11,77 @@ interface HeroSectionProps {
   contactRef: React.RefObject<HTMLElement>;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ 
-  heroRef, 
-  heroInView, 
-  scrollToSection, 
-  projectsRef, 
-  contactRef 
-}) => {
-  return (
-    <section ref={heroRef} className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Enhanced animated background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 animate-pulse"></div>
-        <div className="absolute top-0 left-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
-      
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        transition={{ duration: 0.8 }}
-        className="text-center z-10 max-w-4xl mx-auto px-4"
+const HeroSection: React.FC<HeroSectionProps> = ({
+  heroRef,
+  heroInView,
+  scrollToSection,
+  projectsRef,
+  contactRef,
+}) => (
+  <section
+    ref={heroRef}
+    className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-8 bg-transparent"
+  >
+    {/* Decorative Top Accent Line */}
+    {/* <motion.div
+      initial={{ width: 0 }}
+      animate={heroInView ? { width: "128px" } : { width: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="h-1 rounded-full bg-gradient-to-r from-blue-500 via-fuchsia-500 to-purple-500 mb-6"
+    /> */}
+
+    {/* Minimal Badge */}
+    {/* <motion.div
+      initial={{ opacity: 0, y: -16 }}
+      animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -16 }}
+      transition={{ duration: 0.6, delay: 0.25 }}
+      className="inline-block px-3 py-1 text-xs tracking-widest font-semibold rounded-full border border-blue-500 text-blue-400 bg-white/10 shadow backdrop-blur-sm mb-6"
+    >
+      {`AKSHAY · PORTFOLIO`}
+    </motion.div> */}
+
+    {/* Heading */}
+    <motion.h1
+      initial={{ opacity: 0, y: 20 }}
+      animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.7, delay: 0.35 }}
+      className="text-4xl sm:text-5xl md:text-6xl font-bold text-white bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent text-center drop-shadow"
+    >
+      Akshay Kashyap
+    </motion.h1>
+
+    {/* Subtitle */}
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.6, delay: 0.55 }}
+      className="mt-4 text-lg sm:text-xl md:text-2xl text-gray-300 font-medium text-center max-w-xl mx-auto"
+    >
+      Electronics & Communication Engineering Student&nbsp;|&nbsp;Full-Stack Developer
+    </motion.p>
+
+    {/* Action Buttons */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.6, delay: 0.75 }}
+      className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+    >
+      <Button
+        onClick={() => scrollToSection(projectsRef)}
+        className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 px-7 py-3 text-white font-semibold rounded-full transition-transform hover:scale-105 hover:shadow-lg focus:outline-none"
       >
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={heroInView ? { scale: 1 } : { scale: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8 flex items-center justify-center text-4xl font-bold shadow-2xl"
-        >
-          AK
-        </motion.div>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
-        >
-          Akshay Kashyap
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-xl md:text-2xl text-gray-300 mb-8"
-        >
-          Electronics & Communication Engineering Student | Full-Stack Developer
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <Button
-            onClick={() => scrollToSection(projectsRef)}
-            className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            View My Work <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-          <Button
-            onClick={() => scrollToSection(contactRef)}
-            variant="outline"
-            className="border-2 border-gray-600 text-white hover:bg-white hover:text-black px-8 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
-            Get In Touch
-          </Button>
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-};
+        View My Work <ArrowRight size={18} />
+      </Button>
+      <Button
+        onClick={() => scrollToSection(contactRef)}
+        variant="outline"
+        className="border-2 border-gray-600 text-gray-200 px-7 py-3 font-semibold rounded-full hover:bg-white hover:text-black transition-colors focus:outline-none"
+      >
+        Get In Touch
+      </Button>
+    </motion.div>
+  </section>
+);
 
 export default HeroSection;
